@@ -53,6 +53,11 @@
   .subfooter {
     font-weight: bold;
   }
+  .grand-total {
+    font-size: 30px;
+    position: relative;
+    top: -10px;
+  }
   footer {
     background-color: #bcbcbc;
     border-top: 1px solid #e3e3e3;
@@ -742,8 +747,10 @@
         </div>
       </div>
       <div class="text-right">
-        <h3><span class="total-span">Order Total: <span class="order-total total">$0.00</span></span>
-          <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <h3><span class="grand-total total-span">Order Total: <span class="order-total total">$0.00</span></span>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<!-- btn_cart_LG.gif -->
+          <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
           <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
         </h3>
       </div>
