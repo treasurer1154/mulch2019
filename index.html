@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Boy Scouts of America - Troops 1154 &amp; 1666 - Ashburn, VA - Annual Spring Mulch Sale Fundraiser" />
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -41,6 +42,10 @@
       font-size: 20px;
       font-style: italic;
   }
+  .subleadzips {
+      font-size: 15px;
+      font-style: italic;
+    }
   .form-group {
     padding-bottom:10px;
   }
@@ -55,8 +60,20 @@
   }
   .grand-total {
     font-size: 30px;
-    position: relative;
-    top: -10px;
+  }
+  .btn-primary {
+    margin-bottom: 10px;
+  }
+  .buttonspinner {
+    font-size:30px; 
+    padding:3px;
+    display:none;
+  }
+  .btn.disabled img {
+    display: none;
+  }
+  .btn.disabled .buttonspinner {
+    display:block;
   }
   footer {
     background-color: #bcbcbc;
@@ -93,10 +110,16 @@
       <br/><span class="lead-option">Spreading Services also available</span>
     </p>
     <div class="adlead">Buy more and save: Only $4.00 per bag if you order at least 45 bags</div>
-    <p class="sublead">Free Delivery to Your Driveway by Saturday, March 25 To Your Greater Ashburn Area Home or Business!
+    <p class="sublead">Free Delivery to Your Driveway on <br/>Saturday, March 25 <br/>To Your Home or Business in the Greater Ashburn Area <br/>
+    <span class="subleadzips">(including zip codes 20147, 20148, 20164, 20165, 20171, 20175, 20176)</span>
     </p>
   </div>
-  <div class="row"><div class="col-sm-8 col-lg-6 col-sm-offset-2 col-lg-offset-3">
+  <div class="container-fluid">
+    <div class="text-center">
+    <p><img src="secure-payment-by-paypal.jpg" alt="Secure Payment By PayPal" width="240" /></p>
+    </div>
+  <div class="row">
+    <div class="col-sm-8 col-lg-6 col-sm-offset-2 col-lg-offset-3">
     <div class="row center-block">
       <div class="panel panel-default">
         <div class="panel-heading">Pricing</div>
@@ -747,12 +770,13 @@
         </div>
       </div>
       <div class="text-right">
-        <h3><span class="grand-total total-span">Order Total: <span class="order-total total">$0.00</span></span>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<!-- btn_cart_LG.gif -->
-          <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-          <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </h3>
+        <h3><span class="grand-total total-span">Order Total: <span class="order-total total">$0.00</span></span></h3>
+          <button type="submit" class="btn btn-primary" id="submitButton">
+            <span class="buttonspinner"><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i><span>  Processing...</span></span>
+            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" name="submit" alt="Check out with PayPal - The safer, easier way to pay online!" />
+          </button>
+          <br/>
+          <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" alt="Buy now with PayPal" />
       </div>
       <input type="hidden" name="cmd" value="_cart">
       <input type="hidden" name="upload" value="1">
@@ -994,11 +1018,12 @@ $(document).ready(function() {
     if (numspreading > 0) {
       addItemToForm(PRODUCTS.SPREADING, numspreading, location, phone, email);
     }
-
+    $("#submitButton").addClass('disabled').attr('disabled', 'disabled');
     return true;
   });
 
   $('.form-control').change(formChanged);
+  $("#submitButton").removeAttr('disabled').removeClass('disabled');
   formChanged();
 });
 
